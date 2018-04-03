@@ -62,7 +62,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekq-2V-kyh">
-                    <rect key="frame" x="11" y="421.5" width="510" height="30"/>
+                    <rect key="frame" x="11" y="441.5" width="510" height="30"/>
                     <color key="backgroundColor" red="0.78770650220000005" green="1" blue="0.37558378920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="PnG-mK-lCE"/>
@@ -73,7 +73,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcs-6X-oZW">
-                    <rect key="frame" x="11" y="460.5" width="510" height="30"/>
+                    <rect key="frame" x="11" y="480.5" width="510" height="30"/>
                     <color key="backgroundColor" red="0.78770650220000005" green="1" blue="0.37558378920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="flt-th-otK"/>
@@ -106,8 +106,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYf-cs-1Lv">
-                    <rect key="frame" x="11" y="580" width="510" height="30"/>
+                    <rect key="frame" x="11" y="560" width="510" height="50"/>
                     <color key="backgroundColor" red="0.95686274510000002" green="0.3294117647" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="HXH-Au-Bc5"/>
+                    </constraints>
                     <state key="normal" title="恢复原图">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
@@ -116,7 +119,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0S-0W-nbw">
-                    <rect key="frame" x="11" y="382.5" width="510" height="30"/>
+                    <rect key="frame" x="11" y="402.5" width="510" height="30"/>
                     <color key="backgroundColor" red="0.78770650220000005" green="1" blue="0.37558378920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="tCg-2P-yxO"/>
@@ -160,7 +163,7 @@
                 <constraint firstItem="ekq-2V-kyh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="11" id="Yc2-SP-47U"/>
                 <constraint firstItem="RqH-8P-T38" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="ZGk-Me-LvE"/>
                 <constraint firstItem="HAI-CI-FQN" firstAttribute="top" secondItem="fgd-Tc-gP0" secondAttribute="top" id="bFl-pz-LSX"/>
-                <constraint firstItem="E0S-0W-nbw" firstAttribute="top" secondItem="wFt-TN-3cp" secondAttribute="bottom" constant="10" id="dDO-BP-FZX"/>
+                <constraint firstItem="E0S-0W-nbw" firstAttribute="top" secondItem="wFt-TN-3cp" secondAttribute="bottom" constant="30" id="dDO-BP-FZX"/>
                 <constraint firstAttribute="trailing" secondItem="mcs-6X-oZW" secondAttribute="trailing" constant="11" id="g59-aR-pH9"/>
                 <constraint firstAttribute="trailing" secondItem="dNO-VI-eIS" secondAttribute="trailing" constant="11" id="gXM-Tv-QZk"/>
                 <constraint firstItem="jTw-t7-Hv6" firstAttribute="leading" secondItem="RqH-8P-T38" secondAttribute="trailing" constant="30" id="iwr-3R-gGm"/>
