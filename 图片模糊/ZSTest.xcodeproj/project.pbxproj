@@ -126,6 +126,8 @@
 				E9335CAB1C8FCCE100B4F3D3 /* LaunchScreen.storyboard */,
 				E9335CDF1C8FCF0400B4F3D3 /* TestFiles */,
 				E9335CD81C8FCE9800B4F3D3 /* BaseFiles */,
+				E9643C1E20737690003D3E53 /* CustomTools */,
+				E9335CD61C8FCE6F00B4F3D3 /* ThirdHelper */,
 				E9335CD31C8FCE2F00B4F3D3 /* Resource */,
 				E9335C9D1C8FCCE100B4F3D3 /* Supporting Files */,
 			);
@@ -165,7 +167,6 @@
 			children = (
 				E9335CA91C8FCCE100B4F3D3 /* image.xcassets */,
 				E9335CD41C8FCE6F00B4F3D3 /* Pictures */,
-				E9335CD61C8FCE6F00B4F3D3 /* ThirdHelper */,
 				E9335CD51C8FCE6F00B4F3D3 /* TestData.json */,
 			);
 			path = Resource;
@@ -183,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				E95FF8AC1CE329E700A47BFF /* UIImage+ImageEffects */,
-				E95FF89B1CE30FA900A47BFF /* ImageBlur */,
 			);
 			path = ThirdHelper;
 			sourceTree = "<group>";
@@ -225,6 +225,14 @@
 				E95FF8AE1CE329E700A47BFF /* UIImage+ImageEffects.m */,
 			);
 			path = "UIImage+ImageEffects";
+			sourceTree = "<group>";
+		};
+		E9643C1E20737690003D3E53 /* CustomTools */ = {
+			isa = PBXGroup;
+			children = (
+				E95FF89B1CE30FA900A47BFF /* ImageBlur */,
+			);
+			path = CustomTools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,7 +302,7 @@
 				TargetAttributes = {
 					E9335C991C8FCCE100B4F3D3 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = E6ZLHMXBG4;
+						DevelopmentTeam = 3UNLJJ75RH;
 					};
 					E9335CB21C8FCCE100B4F3D3 = {
 						CreatedOnToolsVersion = 7.2;
@@ -510,10 +518,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3UNLJJ75RH;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZSTest/ZSTest.pch";
 				INFOPLIST_FILE = ZSTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.shuai.ZSTest001;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shuai.ZSProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -525,10 +534,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3UNLJJ75RH;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZSTest/ZSTest.pch";
 				INFOPLIST_FILE = ZSTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.shuai.ZSTest001;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shuai.ZSProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

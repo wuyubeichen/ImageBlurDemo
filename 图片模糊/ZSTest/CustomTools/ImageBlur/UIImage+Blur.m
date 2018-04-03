@@ -9,12 +9,26 @@
 #import "UIImage+Blur.h"
 
 @implementation UIImage (Blur)
+//MARK: - 使用CoreImage实现图片的高斯模糊
 
+/**
+ *  使用CoreImage实现图片的高斯模糊
+ *
+ *  @param image 原始图片
+ *  @param blur  模糊程度,默认为50,取值范围(0-100)
+ *
+ *  @return 返回经过模糊的图片
+ */
 
-
-+(UIImage *)coreBlurImage:(UIImage *)image
-           withBlurNumber:(CGFloat)blur {
-
++(UIImage *)getCoreBlurImage:(UIImage *)image
+               blurNumber:(CGFloat)blur{
+    if(!image){
+        return nil;
+    }
+    //默认模糊度50
+    if (blur < 0) {
+        blur = 50;
+    }
     //获取图片资源
     CIImage  *inputImage=[CIImage imageWithCGImage:image.CGImage];
     //设置filter，高斯模糊的滤镜
@@ -24,13 +38,60 @@
     
     //设置模糊程度,默认为10,取值范围(0-100)
     [filter setValue:@(blur) forKey: @"inputRadius"];
-   
+    
     //将处理好的图片取出
     CIImage *result=[filter valueForKey:kCIOutputImageKey];
     
     //context
     CIContext *context = [CIContext contextWithOptions:nil];
+    
+    //获取CGImage句柄,也就是从数据流中取出图片
+    CGImageRef outImage = [context createCGImage: result fromRect:[inputImage extent]];
+    //最终得到图片
+    UIImage *blurImage=[UIImage imageWithCGImage:outImage];
+    //释放CGImage句柄
+    CGImageRelease(outImage);
+    
+    return blurImage;
+}
 
+/**
+ 使用CoreImage实现图片的模糊
+ 
+ @param image 原始图片对象
+ @param filterName 模糊类型名称，默认使用高斯模糊
+ @param blur 模糊程度,默认为50,取值范围(0-100)
+ @return 返回经过模糊的图片
+ */
++(UIImage *)getCoreBlurImage:(UIImage *)image
+               filterName:(NSString *)filterName
+               blurNumber:(CGFloat)blur{
+    if(!image){
+        return nil;
+    }
+    //默认模糊度50
+    if (blur < 0) {
+        blur = 50;
+    }
+    //获取图片资源
+    CIImage  *inputImage=[CIImage imageWithCGImage:image.CGImage];
+    //设置filter，默认使用高斯模糊的滤镜
+    if(filterName.length == 0){
+        filterName = @"CIGaussianBlur";
+    }
+    CIFilter *filter = [CIFilter filterWithName:filterName];
+    //将图片输入到滤镜中
+    [filter setValue:inputImage forKey:kCIInputImageKey];
+    
+    //设置模糊程度,默认为10,取值范围(0-100)
+    [filter setValue:@(blur) forKey: @"inputRadius"];
+    
+    //将处理好的图片取出
+    CIImage *result=[filter valueForKey:kCIOutputImageKey];
+    
+    //context
+    CIContext *context = [CIContext contextWithOptions:nil];
+    
     //获取CGImage句柄,也就是从数据流中取出图片
     CGImageRef outImage = [context createCGImage: result fromRect:[inputImage extent]];
     //最终得到图片
@@ -43,8 +104,13 @@
 
 
 
-//加模糊效果，image是图片，blur是模糊度
-+ (UIImage *)blurryImage:(UIImage *)image withBlurLevel:(CGFloat)blur
+
+
+
+
+//MARK: - 使用VImage实现图片的高斯模糊
+
++ (UIImage *)getVImgBlurImage:(UIImage *)image withBlurLevel:(CGFloat)blur
 {
     if (image==nil)
     {
@@ -60,13 +126,8 @@
     int boxSize = (int)(blur * 100);
     boxSize -= (boxSize % 2) + 1;
     NSLog(@"boxSize:%i",boxSize);
-    //图像处理
+    
     CGImageRef img = image.CGImage;
-    //需要引入#import <Accelerate/Accelerate.h>
-    /*
-     This document describes the Accelerate Framework, which contains C APIs for vector and matrix math, digital signal processing, large number handling, and image processing.
-     本文档介绍了Accelerate Framework，其中包含C语言应用程序接口（API）的向量和矩阵数学，数字信号处理，大量处理和图像处理。
-     */
     
     //图像缓存,输入缓存，输出缓存
     vImage_Buffer inBuffer, outBuffer;
@@ -105,7 +166,7 @@
     if (error) {
         NSLog(@"error from convolution %ld", error);
     }
-    //    NSLog(@"字节组成部分：%zu",CGImageGetBitsPerComponent(img));
+    //NSLog(@"字节组成部分：%zu",CGImageGetBitsPerComponent(img));
     //颜色空间DeviceRGB
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     //用图片创建上下文,CGImageGetBitsPerComponent(img),7,8
@@ -132,5 +193,60 @@
     return returnImage;
 }
 
+
+
+//MARK: - 使用UIBlurEffect实现毛玻璃效果
+//只适用于iOS8.0以上
+
+/**
+ 使用UIBlurEffect实现毛玻璃效果
+ 
+ @param imgview 需要显示效果的视图
+ */
++ (void)addBlurEffectToView:(UIView *)imgview{
+    UIBlurEffect * blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    //创建模糊view
+    UIVisualEffectView * effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+    effectView.frame = imgview.bounds;
+    [imgview addSubview:effectView];
+}
+
+
+/**
+ 使用UIBlurEffect实现毛玻璃效果
+ 
+ @param imgview 需要显示效果的视图
+ @param frame 显示的效果的区域
+ @param alpha 透明度
+ @param style 效果类型UIBlurEffectStyle
+ */
++ (void)addBlurEffectToView:(UIView *)imgview
+                      frame:(CGRect)frame
+                      style:(UIBlurEffectStyle)style
+                      alpha:(CGFloat)alpha{
+    UIBlurEffect * blur = [UIBlurEffect effectWithStyle:style];
+    //创建模糊view
+    UIVisualEffectView * effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+    //指定需要显示效果的区域位置
+    effectView.frame = frame;
+    //设置透明度
+    effectView.alpha = alpha;
+    [imgview addSubview:effectView];
+}
+
+
+//MARK: - 使用UIToolbar实现图片模糊
++ (void)addToolbarBlurToView:(UIView *)imgView {
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:imgView.bounds];
+    toolbar.barStyle = UIBarStyleBlackTranslucent;
+    [imgView addSubview:toolbar];
+}
+
++ (void)addToolbarBlurToView:(UIView *)imgView alpha:(CGFloat)alpha{
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:imgView.bounds];
+    toolbar.barStyle = UIBarStyleBlackTranslucent;
+    [imgView addSubview:toolbar];
+    toolbar.alpha = alpha;
+}
 
  @end
